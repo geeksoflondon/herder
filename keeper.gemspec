@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = "The zoo keeper"
   s.description = "The zoo keeper that allows all animals to talk to the hamster"
 
-  s.rubyforge_project = "keeper"
+  s.rubyforge_project = "gol-keeper"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
@@ -19,4 +19,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_development_dependency 'rspec'
+
+  s.add_dependency 'activeresource'
 end
