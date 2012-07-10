@@ -2,9 +2,12 @@ class Keeper
   class Config
 
     def initialize
-      self.options = YAML.load_file(Rails.root + "config/keeper.yml")
+      self.options = YAML.load_file("config/keeper.yml")
     rescue
-      self.options = ENV["keeper_host"]
+      self.options = {}
+      options["host"] = ENV["KEEPER_HOST"]
+      options["user"] = ENV["KEEPER_USER"]
+      options["password"] = ENV["KEEPER_PASSWORD"]
     end
 
     def [] key
