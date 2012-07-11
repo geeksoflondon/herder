@@ -2,11 +2,14 @@ PATH
   remote: .
   specs:
     herder (0.0.1)
+      active_resource_pagination
       activeresource
+      will_paginate
 
 GEM
   remote: http://rubygems.org/
   specs:
+    active_resource_pagination (0.0.6)
     activemodel (3.2.6)
       activesupport (= 3.2.6)
       builder (~> 3.0.0)
@@ -29,6 +32,7 @@ GEM
     rspec-expectations (2.11.1)
       diff-lcs (~> 1.1.3)
     rspec-mocks (2.11.1)
+    will_paginate (3.0.3)
 
 PLATFORMS
   ruby
