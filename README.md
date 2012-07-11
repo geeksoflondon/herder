@@ -9,7 +9,7 @@ The zoo keeper that allows all animals to talk to the hamster
 Add to Gemfile for a Rails app:
 
 ```ruby
-gem "gol-keeper", require: "keeper"
+gem "gol-keeper"
 ```
 
 Bundle and then add a `config/keeper.yml`

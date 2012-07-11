@@ -1,4 +1,4 @@
-require "keeper/config"
+require_relative "keeper/config"
 
 class Keeper
   def self.config
@@ -6,4 +6,4 @@ class Keeper
   end
 end
 
-require "keeper/attendee"
+require_relative "keeper/attendee"
