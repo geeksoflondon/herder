@@ -1,17 +1,17 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "keeper/version"
+require "herder/version"
 
 Gem::Specification.new do |s|
-  s.name        = "gol-keeper"
-  s.version     = Keeper::VERSION
+  s.name        = "herder"
+  s.version     = Herder::VERSION
   s.authors     = ["Cristiano Betta"]
   s.email       = ["cristiano@geeksoflondon.com"]
-  s.homepage    = "http://github.com/geeksoflondon/keeper"
-  s.summary     = "The zoo keeper"
-  s.description = "The zoo keeper that allows all animals to talk to the hamster"
+  s.homepage    = "http://github.com/geeksoflondon/herder"
+  s.summary     = "The herder"
+  s.description = "The herder that manages all animals talking to the hamster"
 
-  s.rubyforge_project = "gol-keeper"
+  s.rubyforge_project = "gol-herder"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

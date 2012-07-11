@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gol-keeper (0.0.1)
+    herder (0.0.1)
       activeresource
 
 GEM
@@ -34,6 +34,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  gol-keeper!
+  herder!
   rake
   rspec
