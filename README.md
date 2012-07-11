@@ -5,7 +5,7 @@
 The zoo herder that allows all animals to talk to the hamster
 
 ## Intallation
-    
+
 Add to Gemfile for a Rails app:
 
 ```ruby
@@ -44,6 +44,10 @@ end
 Attendee.find(1)
 #=> #<Attendee:0x007f9aabb84550 @attributes={"created_at"=>"2012-07-10T19:26:23Z", "diet"=>nil, "first_name"=>"John", "id"=>1, "kind"=>1, "last_name"=>"Doe", "name"=>"John Doe", "notes"=>nil, "phone_number"=>nil, "public"=>true, "tshirt"=>nil, "twitter"=>nil, "updated_at"=>"2012-07-10T19:26:23Z"}, @prefix_options={}, @persisted=true>
 ```
+
+## Changelog
+
+* 0.0.1 - Added basic attendee interface
 
 ## License
 
