@@ -5,11 +5,11 @@
 The zoo herder that allows all animals to talk to the hamster
 
 ## Intallation
-
+    
 Add to Gemfile for a Rails app:
 
 ```ruby
-gem "gol-herder"
+gem "herder"
 ```
 
 Bundle and then add a `config/herder.yml`
