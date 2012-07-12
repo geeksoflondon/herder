@@ -1,29 +1,24 @@
 class Herder
   class Config
 
+    attr_accessor :options
+
     def initialize
       self.options = YAML.load_file("config/herder.yml")
     rescue
       self.options = {}
-      options["host"] = ENV["HERDER_HOST"]
-      options["user"] = ENV["HERDER_USER"]
-      options["password"] = ENV["HERDER_PASSWORD"]
-    end
-
-    def [] key
-      options[key]
+      options["site"] = ENV["HERDER_SITE"] || "http://localhost"
+      options["user"] = ENV["HERDER_USER"] || "user"
+      options["password"] = ENV["HERDER_PASSWORD"] || "password"
     end
 
     def self.get key
-      self.instance[key]
+      self.instance.options[key]
     end
 
     def self.instance
       @instance ||= Herder::Config.new
     end
 
-    protected
-
-    attr_accessor :options
   end
 end

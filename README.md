@@ -15,12 +15,12 @@ gem "herder"
 Bundle and then add a `config/herder.yml`
 
 ```yml
-host: http://localhost:3000/
+site: http://localhost:3000/
 user: "username"
 password: "password"
 ```
 
-Or don't add the yml file to fall back on the ENV variables `HERDER_HOST`, `HERDER_USER` and `HERDER_PASSWORD`. This is useful for Heroku
+Or don't add the yml file to fall back on the ENV variables `HERDER_SITE`, `HERDER_USER` and `HERDER_PASSWORD`. This is useful for Heroku
 
 ## Usage
 
