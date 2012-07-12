@@ -2,9 +2,9 @@
 
 [![Build Status](https://secure.travis-ci.org/geeksoflondon/herder.png?branch=master)](http://travis-ci.org/geeksoflondon/herder)
 
-The zoo herder that allows all animals to talk to the hamster
+The herder that allows all animals to talk to the hamster
 
-## Intallation
+## Installation
 
 Add to Gemfile for a Rails app:
 
@@ -20,11 +20,11 @@ user: "username"
 password: "password"
 ```
 
-Or don't add the yml file to fall back on the ENV variables `HERDER_SITE`, `HERDER_USER` and `HERDER_PASSWORD`. This is useful for Heroku
+Or don't add the yml file to fall back on the ENV variables `HERDER_SITE`, `HERDER_USER` and `HERDER_PASSWORD`. This is useful for Heroku.
 
 ## Usage
 
-For now Herder adds a few build in ActiveResource classes. For full usage details read the [ActiveResource documentation](http://api.rubyonrails.org/classes/ActiveResource/Base.html).
+For now Herder adds a few built in ActiveResource classes. For full usage details read the [ActiveResource documentation](http://api.rubyonrails.org/classes/ActiveResource/Base.html).
 
 ```ruby
 Herder::Attendee.find(1)
