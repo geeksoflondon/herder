@@ -1,5 +1,5 @@
 class Herder
-  class Model < ActiveResource::Base
+  class Model < ReactiveResource::Base
     self.site = Herder::Config.get("site")
     self.user = Herder::Config.get("user")
     self.password = Herder::Config.get("password")
