@@ -47,6 +47,7 @@ Attendee.find(1)
 
 ## Changelog
 
+* 0.0.2 - Added emails, tickets, and association
 * 0.0.1 - Added basic attendee interface
 
 ## License
