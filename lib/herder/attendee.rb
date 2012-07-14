@@ -1,5 +1,6 @@
 class Herder
   class Attendee < Herder::Model
-    self.element_name = "attendee"
+    has_many :emails
+    has_many :tickets
   end
 end
