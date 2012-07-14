@@ -9,3 +9,9 @@ class Herder
     end
   end
 end
+
+require_relative "interactable"
+require_relative "interaction"
+require_relative "attendee"
+require_relative "ticket"
+require_relative "email"
