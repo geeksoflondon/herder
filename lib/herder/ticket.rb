@@ -1,7 +1,5 @@
 class Herder
-  class Ticket < Herder::Model
-    include Herder::Interactable
-
+  class Ticket < Herder::Interactable
     belongs_to :attendee
   end
 end

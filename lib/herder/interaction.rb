@@ -9,6 +9,14 @@ class Herder
       destroy
     end
 
+    def to_s
+      value
+    end
+
+    def ==(other)
+      value == other
+    end
+
     private
 
     def query

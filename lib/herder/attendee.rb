@@ -1,7 +1,5 @@
 class Herder
-  class Attendee < Herder::Model
-    include Herder::Interactable
-
+  class Attendee < Herder::Interactable
     has_many :emails
     has_many :tickets
   end

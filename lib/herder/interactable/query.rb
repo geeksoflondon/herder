@@ -1,5 +1,5 @@
 class Herder
-  module Interactable
+  class Interactable
     class Query
 
       def initialize options
@@ -72,6 +72,7 @@ class Herder
       end
 
       def query
+        pp params
         @query ||= Interaction.where(params)
       end
 
@@ -85,7 +86,7 @@ class Herder
         elsif params[:limit] || params[:offset]
           states key
         else
-          state key
+          state(key)
         end
       end
 

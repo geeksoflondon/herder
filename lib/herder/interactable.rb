@@ -1,20 +1,16 @@
-require_relative "interactable/query"
-
 class Herder
-  module Interactable
-    # def self.included(base)
-    #   base.extend(ClassMethods)
-    # end
-    #
-    # module ClassMethods
-    #   def interactions
-    #     Interactable::Query.new(type: klass)
-    #   end
-    #
-    #   def klass
-    #     @klass ||= self.class.name.split("::").last
-    #   end
-    # end
+  class Interactable < Herder::Model
+
+    COMPARATORS = {
+      "=" => "=",
+      "!=" => "!=",
+      "~" => "~",
+      "!~" => "!~",
+      "is" => "=",
+      "isnt" => "!=",
+      "was" => "~",
+      "wasnt" => "!~"
+    }.freeze
 
     def interactions
       Interactable::Query.new(type: klass, id: id)
@@ -23,5 +19,16 @@ class Herder
     def klass
       @klass ||= self.class.name.split("::").last
     end
+
+    def self.insert_token results, tokens
+      if tokens[0].starts_with? "interactions."
+        comparator = COMPARATORS[tokens[1]]
+        results["#{tokens[0]} #{comparator}"] = tokens[2]
+      else
+        results[tokens[0]] = tokens[2]
+      end
+    end
   end
 end
+
+require_relative "interactable/query"
