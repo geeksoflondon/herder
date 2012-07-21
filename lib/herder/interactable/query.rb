@@ -3,29 +3,18 @@ class Herder
     class Query
 
       def initialize options
-        self.params = {}
         params[:interactable_id] = options[:id] if options[:id]
         params[:interactable_type] = options[:type] if options[:type]
-        order "created_at DESC"
+        oldest
       end
 
+      # this is used for lazy execution of the query
       def each
         yield query
       end
 
       def to_s
         query.to_s
-      end
-
-      def first count
-        limit count
-        order "created_at ASC"
-        self
-      end
-
-      def last count
-        limit count
-        self
       end
 
       def limit count
@@ -78,22 +67,25 @@ class Herder
 
       attr_accessor :params
 
+      def params
+        @params ||= {}
+      end
+
       def query
         @query ||= Interaction.where(params)
       end
 
-      def method_missing(meffod, *args, &block)
-        if meffod.to_s.ends_with? "?"
-          meffod = meffod.to_s.gsub("?", "")
-          state? meffod
-        elsif meffod.to_s.ends_with? "="
-          meffod = meffod.to_s.gsub("=", "")
-          set meffod
-          to *args
+      def method_missing(key, *args, &block)
+        if key.to_s.ends_with? "?"
+          key = key.to_s.gsub("?", "")
+          state? key
+        elsif key.to_s.ends_with? "="
+          key = key.to_s.gsub("=", "")
+          set(key).to(*args)
         elsif params[:limit] || params[:offset]
-          states meffod
+          states key
         else
-          state meffod
+          state key
         end
       end
 
