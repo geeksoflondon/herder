@@ -22,9 +22,18 @@ password: "password"
 
 Or don't add the yml file to fall back on the ENV variables `HERDER_SITE`, `HERDER_USER` and `HERDER_PASSWORD`. This is useful for Heroku.
 
-## Usage
+## Basic usage
 
-For now Herder adds a few built in ActiveResource classes. For full usage details read the [ActiveResource documentation](http://api.rubyonrails.org/classes/ActiveResource/Base.html).
+For now Herder adds a few built in ActiveResource classes.
+
+* `Herder::Attendee`
+  * has many emails, tickets
+* `Herder::Email`
+  * belongs to attendee
+* `Herser::Ticket`
+  * belongs to attendee
+
+For full usage details read the [ActiveResource documentation](http://api.rubyonrails.org/classes/ActiveResource/Base.html).
 
 ```ruby
 Herder::Attendee.find(1)
@@ -45,8 +54,51 @@ Attendee.find(1)
 #=> #<Attendee:0x007f9aabb84550 @attributes={"created_at"=>"2012-07-10T19:26:23Z", "diet"=>nil, "first_name"=>"John", "id"=>1, "kind"=>1, "last_name"=>"Doe", "name"=>"John Doe", "notes"=>nil, "phone_number"=>nil, "public"=>true, "tshirt"=>nil, "twitter"=>nil, "updated_at"=>"2012-07-10T19:26:23Z"}, @prefix_options={}, @persisted=true>
 ```
 
+## Using interactions
+
+Interactions are a handy key-value attributes that can be set on other classes (Interactables). This is handy as it means we don't need to add loads of extra booleans to Hamster for every little thing we might need to keep track of.
+
+**Note:** Interactions are never deleted, hence you can always get a full log of interactions including date and time of when something changed value.
+
+### Acting on a record
+
+**Note:** These methods return nothing or the value of the attribute
+
+```ruby
+ticket = Ticket.find(1)
+ticket.interactions.checkin = true #changes state
+ticket.interactions.checkin.toggle #changes state to opposite of current state
+ticket.interactions.checkin.undo! #undoes (hard delete) last state
+ticket.interactions.checkin #just returns latest value for the checkin key
+ticket.interactions.get(:checkin) #actually returns the Interaction record with date and time
+ticket.interactions.checkin? #just checks if value == true
+ticket.interactions.limit(5).checkin #just returns last 5 values for checkin
+ticket.interactions.limit(5).oldest.checkin #just returns first 5 (oldest) values for checkin
+ticket.interactions #full list of interaction objects
+```
+
+### Acting on a table
+
+**Note:** These methods return the objects they are performed on (in this case Ticket).
+
+```ruby
+event = Event.find(1)
+event.tickets.where("interactions.confirmed = true") #confirmed tickets for event #1
+event.tickets.where("interactions.confirmed != true") #unconfirmed tickets for event #1
+event.tickets.where("interactions.cancelled = true") #cancelled tickets for event #1
+event.tickets.where("interactions.checkin ~ true") #attended tickets for event #1
+event.tickets.where("interactions.checkin !~ true") #noshow tickets for event #1
+event.tickets.where("interactions.checkin = true") #onsite tickets for event #1
+event.tickets.where("interactions.checkin != true") #offsite tickets for event #1
+event.tickets.where("interactions.checkin ~ ? AND interactions.created_at < ? AND interactions.created_at > ?", true, Time.now, 3.days.ago) #attended during period
+event.tickets.where("interactions.checkin !~ ? AND interactions.created_at < ? AND interactions.created_at > ?", false, Time.now, 3.days.ago) # did not check out during period
+event.tickets.where("interactions.permanently_left = true") #not-coming-back
+event.tickets.where("interactions.permanently_left != true") #coming-back
+```
+
 ## Changelog
 
+* 0.0.3 - Added interactions and interactables
 * 0.0.2 - Added emails, tickets, and association
 * 0.0.1 - Added basic attendee interface
 
