@@ -72,7 +72,6 @@ class Herder
       end
 
       def query
-        pp params
         @query ||= Interaction.where(params)
       end
 

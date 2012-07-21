@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    herder (0.0.2)
+    herder (0.0.3)
       active_resource_pagination
       activeresource
       reactive_resource

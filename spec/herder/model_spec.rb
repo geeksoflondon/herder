@@ -17,5 +17,12 @@ describe Herder::Model do
       Herder::Model.should_receive(:find).with(:all, params: options)
       Herder::Model.where(options)
     end
+
+    it "should accept strings"
+
+    it "should accept strings with formats as tokens"
+
+    it "should be chain-able"
   end
+
 end
