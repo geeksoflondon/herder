@@ -15,14 +15,26 @@ describe Herder::Model do
     it "should pass the query along to find" do
       options = {foo: :bar}
       Herder::Model.should_receive(:find).with(:all, params: options)
-      Herder::Model.where(options)
+      Herder::Model.where(options).to_s
     end
 
-    it "should accept strings"
+    it "should accept strings" do
+      options = {"foo" => "bar"}
+      Herder::Model.should_receive(:find).with(:all, params: options)
+      Herder::Model.where("foo = 'bar'").to_s
+    end
 
-    it "should accept strings with formats as tokens"
+    it "should accept strings with formats as tokens" do
+      options = {"foo" => "bar"}
+      Herder::Model.should_receive(:find).with(:all, params: options)
+      Herder::Model.where("foo = ?", "bar").to_s
+    end
 
-    it "should be chain-able"
+    it "should be chain-able" do
+      options = {"foo" => "bar", "baz" => "qar"}
+      Herder::Model.should_receive(:find).with(:all, params: options)
+      Herder::Model.where("foo = ?", "bar").where("baz = ?", "qar").to_s
+    end
   end
 
 end
