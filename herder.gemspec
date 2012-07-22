@@ -24,4 +24,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'reactive_resource'
   s.add_dependency 'active_resource_pagination'
   s.add_dependency 'will_paginate'
+  s.add_dependency 'timecop'
 end

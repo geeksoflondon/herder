@@ -14,7 +14,7 @@ describe Herder::Model do
   describe "#where" do
     it "should pass the query along to find" do
       options = {foo: :bar}
-      Herder::Model.should_receive(:find).with(:all, params: options)
+      Herder::Model.should_receive(:find).with(:all, params: {"foo" => :bar})
       Herder::Model.where(options).to_s
     end
 
@@ -36,5 +36,4 @@ describe Herder::Model do
       Herder::Model.where("foo = ?", "bar").where("baz = ?", "qar").to_s
     end
   end
-
 end
