@@ -27,11 +27,18 @@ Or don't add the yml file to fall back on the ENV variables `HERDER_SITE`, `HERD
 For now Herder adds a few built in ActiveResource classes.
 
 * `Herder::Attendee`
-  * has many emails, tickets
+  * has many `Herder::Emails`
+  * has many `Herder::Tickets`
 * `Herder::Email`
-  * belongs to attendee
-* `Herser::Ticket`
-  * belongs to attendee
+  * belongs to `Herder::Attendee`
+* `Herder::Ticket`
+  * belongs to `Herder::Attendee`
+  * belongs to `Herder::Event`
+* `Herder::Event`
+  * has many `Herder::Tickets`
+  * belongs to `Herder::Venue`
+* `Herder::Venue`
+  * has many `Herder::Events`
 
 For full usage details read the [ActiveResource documentation](http://api.rubyonrails.org/classes/ActiveResource/Base.html).
 
