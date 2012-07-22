@@ -3,5 +3,6 @@ class Herder
     include Herder::Interactable
 
     belongs_to :attendee
+    belongs_to :event
   end
 end

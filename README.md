@@ -95,6 +95,7 @@ event.tickets.where("interactions.permanently_left != true") #coming-back
 
 ## Changelog
 
+* 0.0.4 - Added events and venues
 * 0.0.3 - Added interactions and interactables
 * 0.0.2 - Added emails, tickets, and association
 * 0.0.1 - Added basic attendee interface
