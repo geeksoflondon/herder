@@ -5,13 +5,7 @@ class Herder
     self.password = Herder::Config.get("password")
 
     def self.where *params
-      query.where(*params)
-    end
-
-    protected
-
-    def self.query
-      Herder::Model::Query.new(self)
+      Herder::Model::Query.new(self).where(*params)
     end
   end
 end

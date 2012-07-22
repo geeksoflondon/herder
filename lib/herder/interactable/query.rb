@@ -1,16 +1,15 @@
 class Herder
-  class Interactable
+  module Interactable
     class Query
-
       def initialize options
         params[:interactable_id] = options[:id] if options[:id]
         params[:interactable_type] = options[:type] if options[:type]
-        oldest
+        newest
       end
 
       # this is used for lazy execution of the query
-      def each
-        yield query
+      def each &block
+        query.each &block
       end
 
       def to_s
@@ -19,12 +18,6 @@ class Herder
 
       def limit count
         params[:limit] = count
-        params[:offset] = 0
-        self
-      end
-
-      def order by
-        params[:order] = by
         self
       end
 
@@ -48,24 +41,28 @@ class Herder
 
       def state? key
         interaction = state(key)
-        interaction && interaction.value == "true"
+        interaction && interaction.value.to_s == "true"
       end
 
       def state key
         limit 1
+        newest
         states(key).first
       end
 
       def states key
         params[:key] = key
-        params[:limit] ||= 1
-        params[:offset] ||= 0
         query
       end
 
       protected
 
       attr_accessor :params
+
+      def order by
+        params[:order] = by
+        self
+      end
 
       def params
         @params ||= {}

@@ -62,15 +62,12 @@ Interactions are a handy key-value attributes that can be set on other classes (
 
 ### Acting on a record
 
-**Note:** These methods return nothing or the value of the attribute
-
 ```ruby
 ticket = Ticket.find(1)
 ticket.interactions.checkin = true #changes state
 ticket.interactions.checkin.toggle #changes state to opposite of current state
 ticket.interactions.checkin.undo! #undoes (hard delete) last state
 ticket.interactions.checkin #just returns latest value for the checkin key
-ticket.interactions.get(:checkin) #actually returns the Interaction record with date and time
 ticket.interactions.checkin? #just checks if value == true
 ticket.interactions.limit(5).checkin #just returns last 5 values for checkin
 ticket.interactions.limit(5).oldest.checkin #just returns first 5 (oldest) values for checkin

@@ -1,7 +1,7 @@
 class Herder
   class Interaction < Herder::Model
     def toggle
-      val = value != "true"
+      val = !["true", true].include?(value)
       query.set(key).to(val)
     end
 

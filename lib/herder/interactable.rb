@@ -1,8 +1,10 @@
 class Herder
-  class Interactable < Herder::Model
+  module Interactable
     def interactions
       Interactable::Query.new(type: klass, id: id)
     end
+
+    protected
 
     def klass
       @klass ||= self.class.name.split("::").last
