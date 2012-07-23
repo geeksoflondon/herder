@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_development_dependency 'rspec'
+  s.add_development_dependency 'timecop'
 
   s.add_dependency 'activeresource'
   s.add_dependency 'reactive_resource'
   s.add_dependency 'active_resource_pagination'
   s.add_dependency 'will_paginate'
-  s.add_dependency 'timecop'
 end
