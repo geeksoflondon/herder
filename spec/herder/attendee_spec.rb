@@ -9,6 +9,10 @@ describe Herder::Attendee do
     Herder::Attendee.new.should be_a(Herder::Model)
   end
 
+  it "should inherit Herder::Interactable" do
+    Herder::Attendee.new.should be_a(Herder::Interactable)
+  end
+
   it "should have many tickets and emails" do
     Herder::Attendee.associations.map(&:attribute).should =~ [:tickets, :emails]
     Herder::Attendee.associations.map(&:class).uniq.should be == [ReactiveResource::Association::HasManyAssociation]

@@ -10,7 +10,7 @@ describe Herder::Email do
   end
 
   it "should belong to an attendee" do
-    Herder::Ticket.associations.map(&:attribute).should =~ [:attendee]
-    Herder::Ticket.associations.map(&:class).should be == [ReactiveResource::Association::BelongsToAssociation]
+    Herder::Email.associations.map(&:attribute).should =~ [:attendee]
+    Herder::Email.associations.map(&:class).should be == [ReactiveResource::Association::BelongsToAssociation]
   end
 end

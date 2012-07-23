@@ -1,8 +1,8 @@
 class Herder
-  class Attendee < Herder::Model
+  class Event < Herder::Model
     include Herder::Interactable
 
-    has_many :emails
     has_many :tickets
+    belongs_to :venue
   end
 end
